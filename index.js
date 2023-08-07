@@ -30,8 +30,7 @@ else {
 */
 
 function Finaller(arr) {
-  let newArr =[];
-  return newArr = arr.filter((key) => key.Stage === "Final");
+  return  arr.filter((key) => key.Stage === "Final");
 }
 
 console.group("Here is the details about the finals => ", Finaller(fifaData));
@@ -44,8 +43,19 @@ console.group("Here is the details about the finals => ", Finaller(fifaData));
 	*/
 
 function Yillar(arr, Finalscb) {
-  let yearMap = [];
-  return yearMap = Finalscb(arr).map((item) => item.Year);
+  let newArr =  Finalscb(arr).map((item) => item.Year);
+  let temp = Finalscb(arr);
+  let _attendance =temp.map((key) => {
+    return{
+      years: key.Year,
+      attendance:key.Attendance
+    }
+  });
+  let attandence1 = _attendance.sort((a,b) => {
+    return b.attendance - a.attendance;
+  })
+  // console.log(attandence1[0]);
+  return newArr;
 }
 
 console.log("Yıllar => ", Yillar(fifaData, Finaller));
@@ -58,16 +68,27 @@ console.log("Yıllar => ", Yillar(fifaData, Finaller));
 	4. Tüm kazanan ülkelerin isimlerini içeren `kazananlar` adında bir dizi(array) döndürecek(return)  */
 
 function Kazananlar(arr, Finalscb) {
-  let winners = [];
-  Finalscb(arr).map((x) => {
+  let finals = Finalscb(arr);
+  let winners = finals.map((x) => {
     if (x["Home Team Goals"] > x["Away Team Goals"]) {
-      winners.push(x["Home Team Name"]);
-    } else {
-      winners.push(x["Away Team Name"]);
-    }
+           return x["Home Team Name"];
+         } else {
+         return x["Away Team Name"];
+         }
   });
 
+  let newSet = new Set(winners);
+  let uniuqe = Array.from(newSet);
+  console.log(uniuqe);
   return winners;
+  // let winners = [];
+  // Finalscb(arr).map((x) => {
+  //   if (x["Home Team Goals"] > x["Away Team Goals"]) {
+  //     winners.push(x["Home Team Name"]);
+  //   } else {
+  //     winners.push(x["Away Team Name"]);
+  //   }
+  // });
 }
 
 console.log("Kazananlar =>  ", Kazananlar(fifaData, Finaller));
@@ -90,6 +111,7 @@ function YillaraGoreKazananlar(arr, Finalscb, Yearscb, Winnerscb) {
       `${Yearscb(arr, Finalscb)[i]} yılında, ${
         Winnerscb(arr, Finalscb)[i]
       } dünya kupasını kazandı!`
+      // ( ${Finalscb(arr)[i]["Home Team Goals"]} - ${Finalscb(arr)[i]["Away Team Goals"]} ) skor ve izleyici sayısı  ${Finalscb(arr)[i].Attendance} ile
     );
   }
   return result;
@@ -114,6 +136,14 @@ console.log(
 */
 
 function OrtalamaGolSayisi(Finalscb) {
+
+    let totalGoals = Finalscb.reduce((acc,item) => { 
+        return acc + item["Home Team Goals"] + item["Away Team Goals"];
+  },0);
+
+  return (totalGoals / Finalscb.length).toFixed(2);
+
+  /*
   let sum = 0;
   let counter = 0;
   for (let i = 0; i < Finalscb.length; i++) {
@@ -122,6 +152,7 @@ function OrtalamaGolSayisi(Finalscb) {
   }
 
   return (sum / counter).toFixed(2);
+  */
 }
 
 console.log("Ortalama gol sayısı => ", OrtalamaGolSayisi(Finaller(fifaData)));// the result
