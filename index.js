@@ -130,7 +130,36 @@ console.log("Ortalama => ", OrtalamaGolSayisi(Finaller(fifaData)));
 İpucu: `.reduce` Kullanın*/
 
 function UlkelerinKazanmaSayilari(/* kodlar buraya */) {
-	
-    /* kodlar buraya */
-	
+  /* kodlar buraya */
 }
+
+/*  BONUS 2:  
+EnCokGolAtan() isminde bir fonksiyon yazın, `data` yı parametre olarak alsın ve Dünya kupası finallerinde en çok gol atan takımı döndürsün */
+
+function EnCokGolAtan(/* kodlar buraya */) {
+  /* kodlar buraya */
+}
+
+/*  BONUS 3: 
+EnKotuDefans() adında bir fonksiyon yazın, `data` yı parametre olarak alsın ve Dünya kupasında finallerinde en çok golü yiyen takımı döndürsün*/
+
+function EnKotuDefans(/* kodlar buraya */) {
+  /* kodlar buraya */
+}
+
+/* Hala vaktiniz varsa, README dosyasında listelenen hedeflerden istediğinizi aşağıdaki boşluğa yazabilirsiniz. */
+
+/* Bu satırın aşağısındaki kodları lütfen değiştirmeyin */
+function sa() {
+  console.log("Kodlar çalışıyor");
+  return "as";
+}
+sa();
+module.exports = {
+  sa,
+  Finaller,
+  Yillar,
+  Kazananlar,
+  YillaraGoreKazananlar,
+  OrtalamaGolSayisi,
+};
