@@ -144,7 +144,7 @@ function OrtalamaGolSayisi(Finalscb) {
   return (sum / counter).toFixed(2);
 }
 
-console.log("Ortalama gol sayısı => ", OrtalamaGolSayisi(Finaller(fifaData)));
+console.log("Ortalama gol sayısı => ", OrtalamaGolSayisi(Finaller(fifaData)));// the result
 
 /// EKSTRA ÇALIŞMALAR ///
 
